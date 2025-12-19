@@ -1,7 +1,6 @@
 const Controller = ({count, setCount}) => {
 
   let onclick = (e) => {
-    console.log(e.target.value);
     setCount(count + Number(e.target.value));
   }
   return <>
