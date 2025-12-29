@@ -30,19 +30,38 @@ function reducer(state, action) {
 }
 
 const Md = () => {
-  //let [todos, setTodos] = useState(mockData);
-  let [todos, todoDispatch] =  useReducer(reducer,mockData)
 
+  let [todos, todoDispatch] =  useReducer(reducer,mockData)
+// 1. 추가 기능 (ID 생성 로직도 여기로 이사옴!)
+  const onCreate = (content) => {
+    const newTodo = {
+      id: todos.length > 0 ? Math.max(...todos.map(t => t.id)) + 1 : 1,
+      isDone: false,
+      content: content,
+      date: new Date(),
+    };
+    todoDispatch({ type: "ADD_TODO", data: newTodo });
+  };
+
+  // 2. 수정 기능
+  const onUpdate = (targetId) => {
+    todoDispatch({ type: "UPDATE", data: targetId });
+  };
+
+  // 3. 삭제 기능
+  const onDelete = (targetId) => {
+    todoDispatch({ type: "DELETE", data: targetId });
+  };
   return <>
     <div className='md'>
       <section>
         <Td/>
       </section>
       <section>
-        <Ld todos={todos} todoDispatch={todoDispatch}/>
+        <Ld onCreate={onCreate}/>
       </section>
       <section>
-        <Dd todos={todos} todoDispatch={todoDispatch}/>
+        <Dd todos={todos} onUpdate={onUpdate} onDelete={onDelete}/>
       </section>
     </div>
   </>;

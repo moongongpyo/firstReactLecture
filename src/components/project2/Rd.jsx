@@ -1,16 +1,13 @@
 import './Rd.css';
-const Rd = ({todo, todos,todoDispatch}) => {
+const Rd = ({todo, onUpdate,onDelete}) => {
   const onClick = () => {
-    todoDispatch({
-      type: "DELETE",
-      data: todo.id, // 삭제할 ID만 던져줌
-    });
+    // "삭제해줘" (ID만 넘김)
+    onDelete(todo.id);
   };
+
   const onChangeCheckbox = () => {
-    todoDispatch({
-      type: "UPDATE",
-      data: todo.id, // 수정할 ID만 던져줌
-    });
+    // "업데이트해줘" (ID만 넘김)
+    onUpdate(todo.id);
   };
   return <>
     <div className='Rd'>

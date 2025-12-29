@@ -1,6 +1,6 @@
 import './Dd.css';
 import Rd from "./Rd.jsx";
-import {useReducer, useState} from "react";
+import {useReducer} from "react";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -11,7 +11,7 @@ function reducer(state, action) {
   }
 }
 
-const Dd = ({todos,todoDispatch}) => {
+const Dd = ({todos, onUpdate, onDelete}) => {
 
   const [search,dispatch] = useReducer(reducer,"");
   const onChange = (e) => {
@@ -28,7 +28,7 @@ const Dd = ({todos,todoDispatch}) => {
       <input onChange={onChange} placeholder='검색어를 입력하세요'/>
       {
         todos.filter((todo)=>todo.content.toLowerCase().includes(search))
-        .map((todo) => (<Rd todo={todo} todos = {todos} todoDispatch = {todoDispatch} />))
+        .map((todo) => (<Rd todo={todo} onUpdate = {onUpdate} onDelete = {onDelete} />))
       }
     </div>
 
