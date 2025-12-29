@@ -2,14 +2,36 @@ import "./Md.css";
 import Ld from "./Ld.jsx";
 import Dd from "./Dd.jsx";
 import Td from "./Td.jsx";
-import { useState} from "react";
+import {useReducer, useState} from "react";
+const mockData = [
+  {id: 1, isDone: false, content: "리액트 공부", date: new Date()},
+  {id: 2, isDone: false, content: "빨래 하기", date: new Date()},
+  {id: 3, isDone: false, content: "노래 연습", date: new Date()},
+]
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "ADD_TODO" :
+      return [action.data, ...state];
+    case "DELETE":
+      // action.data로 id를 받아서 해당 id 제외하고 필터링
+      return state.filter((item) => item.id !== action.data);
+
+    case "UPDATE":
+      // action.data로 id를 받아서 해당 id의 isDone만 반전
+      return state.map((item) =>
+          item.id === action.data
+              ? { ...item, isDone: !item.isDone }
+              : item
+      );
+    default :
+      return state;
+  }
+}
 
 const Md = () => {
-  let [todos, setTodos] = useState([
-    {id: 1, isDone: false, content: "리액트 공부", date: new Date()},
-    {id: 2, isDone: false, content: "빨래 하기", date: new Date()},
-    {id: 3, isDone: false, content: "노래 연습", date: new Date()},
-  ]);
+  //let [todos, setTodos] = useState(mockData);
+  let [todos, todoDispatch] =  useReducer(reducer,mockData)
 
   return <>
     <div className='md'>
@@ -17,10 +39,10 @@ const Md = () => {
         <Td/>
       </section>
       <section>
-        <Ld todos={todos} setTodos={setTodos}/>
+        <Ld todos={todos} todoDispatch={todoDispatch}/>
       </section>
       <section>
-        <Dd todos={todos} setTodos={setTodos}/>
+        <Dd todos={todos} todoDispatch={todoDispatch}/>
       </section>
     </div>
   </>;
