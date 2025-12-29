@@ -1,0 +1,14 @@
+
+body {
+  margin: 10px;
+  padding: 0;
+}
+.md{
+  margin: 0 auto;
+  width: 500px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+

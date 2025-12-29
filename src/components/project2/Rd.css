@@ -1,0 +1,31 @@
+.Rd{
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  padding-bottom: 20px;
+  align-items: center;
+  border-bottom: 1px solid rgb(240, 240, 240);
+}
+
+.Rd > input {
+  width: 20px;
+}
+
+.Rd > .contents{
+  flex: 1;
+}
+
+.Rd > .date{
+  font-size: 14px;
+  color: gray;
+}
+
+.Rd > button{
+  background-color: #F0F0F0;
+  color: gray;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 5px;
+  cursor: pointer;           /* 마우스 올리면 손가락 모양 */
+}
