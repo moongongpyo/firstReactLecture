@@ -1,6 +1,7 @@
 import './Dd.css';
-import Rd from "./Rd.jsx";
-import {useMemo, useReducer} from "react";
+import ListItem from "./ListItem.jsx";
+import {useContext, useMemo, useReducer} from "react";
+import {TodoContext} from "./Todo.jsx";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -11,7 +12,9 @@ function reducer(state, action) {
   }
 }
 
-const Dd = ({todos, onUpdate, onDelete}) => {
+const List = () => {
+
+  const {todos} = useContext(TodoContext);
 
   const [search,dispatch] = useReducer(reducer,"");
   const onChange = (e) => {
@@ -43,7 +46,7 @@ const Dd = ({todos, onUpdate, onDelete}) => {
       <input onChange={onChange} placeholder='검색어를 입력하세요'/>
       {
         todos.filter((todo)=>todo.content.toLowerCase().includes(search))
-        .map((todo) => (<Rd todo={todo} onUpdate = {onUpdate} onDelete = {onDelete} />))
+        .map((todo) => (<ListItem key={todo.id} {...todo}/>))
       }
     </div>
 
@@ -51,4 +54,4 @@ const Dd = ({todos, onUpdate, onDelete}) => {
   </>;
 }
 
-export default Dd;
+export default List;

@@ -1,8 +1,11 @@
 import './Ld.css';
-import {useRef} from "react";
+import {useContext, useRef} from "react";
+import {TodoContext} from "./Todo.jsx";
 
-const Ld = ({onCreate}) => {
+const Editor = () => {
   const inputRef = useRef();
+
+  const { onCreate } = useContext(TodoContext);
 
   const onClick = () => {
     // 1. 입력값 가져오기
@@ -36,4 +39,4 @@ const Ld = ({onCreate}) => {
   </>;
 }
 
-export default Ld;
+export default Editor;

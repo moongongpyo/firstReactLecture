@@ -1,25 +1,29 @@
 import './Rd.css';
-import {memo} from "react";
-const Rd = ({todo, onUpdate,onDelete}) => {
+import { useContext} from "react";
+import {TodoContext} from "./Todo.jsx";
+const ListItem = ({id,isDone,content,date}) => {
+
+  const {onDelete,onUpdate} = useContext(TodoContext)
+
   const onClick = () => {
     // "삭제해줘" (ID만 넘김)
-    onDelete(todo.id);
+    onDelete(id);
   };
 
   const onChangeCheckbox = () => {
     // "업데이트해줘" (ID만 넘김)
-    onUpdate(todo.id);
+    onUpdate(id);
   };
   return <>
     <div className='Rd'>
       <input
           type='checkbox'
-          checked={todo.isDone}
+          checked={isDone}
           onChange={onChangeCheckbox}
       />
-      <div className='contents'>{todo.content}</div>
+      <div className='contents'>{content}</div>
       <div className='date'>
-        {todo.date.toLocaleDateString()}
+        {date.toLocaleDateString()}
       </div>
       <button onClick={onClick}>삭제</button>
     </div>
@@ -27,5 +31,5 @@ const Rd = ({todo, onUpdate,onDelete}) => {
   </>;
 }
 
-//고차 컴포넌트(HOC)
-export default Rd;
+
+export default ListItem;

@@ -1,5 +1,5 @@
 import './App.css'
-import Md from "./components/project2/Md.jsx";
+import Todo from "./components/project2/Todo.jsx";
 
 //1. 컴포넌트는 자신이 관리하는 state가 변경되었을때 리랜더링
 //2. 컴포넌트는 자신이 전달받는 props의 값이 변경되었을때 리랜더링
@@ -8,7 +8,7 @@ import Md from "./components/project2/Md.jsx";
 
 //App 컴포넌트 //부모 컴포넌트
 function App() {
-  return <Md/>;
+  return <Todo/>;
 }
 
 export default App
