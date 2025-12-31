@@ -1,4 +1,5 @@
 import './Rd.css';
+import {memo} from "react";
 const Rd = ({todo, onUpdate,onDelete}) => {
   const onClick = () => {
     // "삭제해줘" (ID만 넘김)
@@ -26,4 +27,5 @@ const Rd = ({todo, onUpdate,onDelete}) => {
   </>;
 }
 
+//고차 컴포넌트(HOC)
 export default Rd;

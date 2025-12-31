@@ -1,4 +1,5 @@
 import './Td.css';
+import {memo} from "react";
 const Td = () => {
   let date = new Date();
   return <>
@@ -9,4 +10,4 @@ const Td = () => {
   </>;
 }
 
-export default Td;
+export default  memo(Td);

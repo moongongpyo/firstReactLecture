@@ -2,7 +2,7 @@ import "./Md.css";
 import Ld from "./Ld.jsx";
 import Dd from "./Dd.jsx";
 import Td from "./Td.jsx";
-import {useReducer, useState} from "react";
+import {useCallback, useReducer, useState} from "react";
 const mockData = [
   {id: 1, isDone: false, content: "리액트 공부", date: new Date()},
   {id: 2, isDone: false, content: "빨래 하기", date: new Date()},
@@ -44,14 +44,14 @@ const Md = () => {
   };
 
   // 2. 수정 기능
-  const onUpdate = (targetId) => {
+  const onUpdate = useCallback((targetId) => {
     todoDispatch({ type: "UPDATE", data: targetId });
-  };
+  },[]);
 
   // 3. 삭제 기능
-  const onDelete = (targetId) => {
+  const onDelete =useCallback( (targetId) => {
     todoDispatch({ type: "DELETE", data: targetId });
-  };
+  },[]);
   return <>
     <div className='md'>
       <section>
