@@ -1,11 +1,11 @@
 import './Ld.css';
 import {useContext, useRef} from "react";
-import {TodoContext} from "./Todo.jsx";
+import {TodoDispatchContext} from "./Todo.jsx";
 
 const Editor = () => {
   const inputRef = useRef();
 
-  const { onCreate } = useContext(TodoContext);
+  const { onCreate } = useContext(TodoDispatchContext);
 
   const onClick = () => {
     // 1. 입력값 가져오기

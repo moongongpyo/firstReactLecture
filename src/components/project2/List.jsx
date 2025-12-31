@@ -1,7 +1,7 @@
 import './Dd.css';
 import ListItem from "./ListItem.jsx";
 import {useContext, useMemo, useReducer} from "react";
-import {TodoContext} from "./Todo.jsx";
+import {TodoStateContext} from "./Todo.jsx";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -14,7 +14,7 @@ function reducer(state, action) {
 
 const List = () => {
 
-  const {todos} = useContext(TodoContext);
+  const todos = useContext(TodoStateContext);
 
   const [search,dispatch] = useReducer(reducer,"");
   const onChange = (e) => {

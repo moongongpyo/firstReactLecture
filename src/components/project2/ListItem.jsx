@@ -1,9 +1,9 @@
 import './Rd.css';
-import { useContext} from "react";
-import {TodoContext} from "./Todo.jsx";
+import {memo, useContext} from "react";
+import {TodoDispatchContext} from "./Todo.jsx";
 const ListItem = ({id,isDone,content,date}) => {
 
-  const {onDelete,onUpdate} = useContext(TodoContext)
+  const {onDelete,onUpdate} = useContext(TodoDispatchContext)
 
   const onClick = () => {
     // "삭제해줘" (ID만 넘김)
@@ -32,4 +32,4 @@ const ListItem = ({id,isDone,content,date}) => {
 }
 
 
-export default ListItem;
+export default memo(ListItem);

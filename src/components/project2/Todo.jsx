@@ -2,7 +2,7 @@ import "./Md.css";
 import Editor from "./Editor.jsx";
 import List from "./List.jsx";
 import Td from "./Td.jsx";
-import {createContext, useCallback, useReducer} from "react";
+import {createContext, useCallback, useMemo, useReducer, useRef} from "react";
 
 const mockData = [
   {id: 1, isDone: false, content: "리액트 공부", date: new Date()},
@@ -30,21 +30,23 @@ function reducer(state, action) {
   }
 }
 
-export const TodoContext = createContext();
+export const TodoStateContext = createContext();
+export const TodoDispatchContext = createContext();
 
 const Todo = () => {
 
   let [todos, todoDispatch] = useReducer(reducer, mockData)
+  const idRef = useRef(4);
 // 1. 추가 기능 (ID 생성 로직도 여기로 이사옴!)
-  const onCreate = (content) => {
+  const onCreate = useCallback((content) => {
     const newTodo = {
-      id: todos.length > 0 ? Math.max(...todos.map(t => t.id)) + 1 : 1,
+      id: idRef.current++,
       isDone: false,
       content: content,
       date: new Date(),
     };
     todoDispatch({type: "ADD_TODO", data: newTodo});
-  };
+  }, []);
 
   // 2. 수정 기능
   const onUpdate = useCallback((targetId) => {
@@ -55,24 +57,25 @@ const Todo = () => {
   const onDelete = useCallback((targetId) => {
     todoDispatch({type: "DELETE", data: targetId});
   }, []);
+  const memoizedDispatch = useMemo(() =>{
+    return  {onCreate, onUpdate, onDelete};
+  },[onCreate,onUpdate,onDelete]);
+
   return <>
     <div className='md'>
       <section>
         <Td/>
       </section>
-      <TodoContext.Provider value={{
-        todos,
-        onCreate,
-        onUpdate,
-        onDelete
-      }}>
-        <section>
-          <Editor/>
-        </section>
-        <section>
-          <List/>
-        </section>
-      </TodoContext.Provider>
+      <TodoStateContext.Provider value={todos}>
+        <TodoDispatchContext.Provider value={memoizedDispatch}>
+          <section>
+            <Editor/>
+          </section>
+          <section>
+            <List/>
+          </section>
+        </TodoDispatchContext.Provider>
+      </TodoStateContext.Provider>
     </div>
   </>;
 }
