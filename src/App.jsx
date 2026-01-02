@@ -5,6 +5,8 @@ import Diary from "./pages/Diary.jsx";
 import New from "./pages/New.jsx";
 import Notfound from "./pages/Notfound.jsx";
 
+import {getEmotionImage} from "./util/get-emotion-image.js";
+
 //1. 컴포넌트는 자신이 관리하는 state가 변경되었을때 리랜더링
 //2. 컴포넌트는 자신이 전달받는 props의 값이 변경되었을때 리랜더링
 //3. 부모 컴포넌트가 리랜더링 되었을때 자식 컴포넌트도 리랜더링
@@ -23,7 +25,15 @@ function App() {
 
   return (
       <>
-        {/*Routes 컴포넌트 위에 적용되는 페이지는 모든 페이지에 공통으로 들어감*/}
+        <div>
+          <img src={getEmotionImage(1)}/>
+          <img src={getEmotionImage(2)}/>
+          <img src={getEmotionImage(3)}/>
+          <img src={getEmotionImage(4)}/>
+          <img src={getEmotionImage(5)}/>
+
+        </div>
+
         <div>
           <Link to={"/"}>Home </Link> {/*client side Rendering 방식으로 라우팅하기에 a태그와 다르게 전체 페이지를 다시 불러올 필요가 없음*/}
           <Link to={"/new"}>New </Link>
@@ -32,8 +42,10 @@ function App() {
           <a href="/">Home </a>
           <a href="/new">New </a>
           <a href="/diary">Diary </a>*/}
+          <br/>
           <button onClick={onClickButton}>New 페이지로 이동</button>
         </div>
+        {/*Routes 컴포넌트 위에 적용되는 페이지는 모든 페이지에 공통으로 들어감*/}
         <Routes>
           {/*Route 컴포넌트 이외의 다른 태그를 하위로 두면 에러 발생*/}
           <Route path="/" element={<Home/>}/>

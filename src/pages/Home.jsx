@@ -2,7 +2,7 @@ import {useSearchParams} from "react-router-dom";
 import {useEffect} from "react";
 
 const Home = () => {
-  const [params,setParams] = useSearchParams();
+ /* const [params,setParams] = useSearchParams();
   const value = params.get("value");
   console.log(value)
   setParams({ value: "hi" })
@@ -11,7 +11,7 @@ const Home = () => {
     if (!value) {
       setParams({ value: "hi" });
     }
-  }, [value, setParams]);
+  }, [value, setParams]);*/
   return <div>Home</div>
 }
 
