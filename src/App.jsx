@@ -1,5 +1,9 @@
 import './App.css'
-import Todo from "./components/project2/Todo.jsx";
+import {Link, Route, Routes, useNavigate} from "react-router-dom";
+import Home from "./pages/Home.jsx";
+import Diary from "./pages/Diary.jsx";
+import New from "./pages/New.jsx";
+import Notfound from "./pages/Notfound.jsx";
 
 //1. 컴포넌트는 자신이 관리하는 state가 변경되었을때 리랜더링
 //2. 컴포넌트는 자신이 전달받는 props의 값이 변경되었을때 리랜더링
@@ -7,8 +11,37 @@ import Todo from "./components/project2/Todo.jsx";
 //* 따라서 의미없이 부모의 상태를 자식이 props로 전달 받으면 성는이 저하됨,(부모의 상태에 영향 받으면 상관 없음)
 
 //App 컴포넌트 //부모 컴포넌트
+// 1. "/" : 모든 일기를 조화하는 Home 페이지
+// 2. "/new" : 새로운 일기를 작성하는 New 페이지
+// 3. "/diary" : 일기를 상세히 조회하는 Diary 페이지
 function App() {
-  return <Todo/>;
+  const nav = useNavigate();
+
+  const onClickButton = () =>{
+    nav("/new");
+  }
+
+  return (
+      <>
+        {/*Routes 컴포넌트 위에 적용되는 페이지는 모든 페이지에 공통으로 들어감*/}
+        <div>
+          <Link to={"/"}>Home </Link> {/*client side Rendering 방식으로 라우팅하기에 a태그와 다르게 전체 페이지를 다시 불러올 필요가 없음*/}
+          <Link to={"/new"}>New </Link>
+          <Link to={"/diary"}>Diary</Link>
+       {/*   <br/>
+          <a href="/">Home </a>
+          <a href="/new">New </a>
+          <a href="/diary">Diary </a>*/}
+          <button onClick={onClickButton}>New 페이지로 이동</button>
+        </div>
+        <Routes>
+          {/*Route 컴포넌트 이외의 다른 태그를 하위로 두면 에러 발생*/}
+          <Route path="/" element={<Home/>}/>
+          <Route path="/new" element={<New/>}/>
+          <Route path="/diary" element={<Diary/>}/>
+          <Route path="*" element={<Notfound/>}/>
+        </Routes>
+      </>);
 }
 
 export default App
