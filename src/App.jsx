@@ -133,14 +133,7 @@ function App() {
           <br/>
         </div>*/}
 
-        {/*
-        <Header title={"header"}
-                leftChild={<Button text={"Left"} onClick={() => {
-                  console.log("버튼클릭")
-                }}/>}
-                rightChild={<Button text={"Right"} onClick={() => {
-                  console.log("버튼클릭")
-                }}/>}/>*/}
+
 
         {/*Routes 컴포넌트 위에 적용되는 페이지는 모든 페이지에 공통으로 들어감*/}
         <DiaryStateContext.Provider value={data}>
