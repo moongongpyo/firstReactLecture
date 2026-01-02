@@ -38,7 +38,7 @@ function App() {
           {/*Route 컴포넌트 이외의 다른 태그를 하위로 두면 에러 발생*/}
           <Route path="/" element={<Home/>}/>
           <Route path="/new" element={<New/>}/>
-          <Route path="/diary" element={<Diary/>}/>
+          <Route path="/diary/:id" element={<Diary/>}/>
           <Route path="*" element={<Notfound/>}/>
         </Routes>
       </>);
