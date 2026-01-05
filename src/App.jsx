@@ -80,12 +80,12 @@ function App() {
 
   const idRef = useRef(6);
   //새로운 일기 추가
-  const onCreate = (created, emotionId, content) => {
+  const onCreate = (createdDate, emotionId, content) => {
     dispatch({
       type: "CREATE",
       data: {
         id: idRef.current++,
-        created: created,
+        createdDate: createdDate,
         emotionId: emotionId,
         content: content
       }
