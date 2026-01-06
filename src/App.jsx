@@ -92,12 +92,12 @@ function App() {
     })
   }
   //기존 일기 수정
-  const onUpdate = (id, created, emotionId, content) => {
+  const onUpdate = (id, createdDate, emotionId, content) => {
     dispatch({
       type: "UPDATE",
       data: {
         id: id,
-        created: created,
+        createdDate: createdDate,
         emotionId: emotionId,
         content: content
       }

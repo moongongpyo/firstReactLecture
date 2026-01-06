@@ -1,4 +1,4 @@
-import React, {useContext, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import "./Editor.css";
 import EmotionItem from "./EmotionItem.jsx";
 import Button from "./Button.jsx";
@@ -39,14 +39,14 @@ const getStringedDate = (targetDate) => {
 
 }
 
-const Editor = ({onClickSubmitButton}) => {
+const Editor = ({initData,onClickSubmitButton}) => {
 
 const nav = useNavigate();
-  const [input, setInput] = useState({
-    createdDate: new Date(),
-    emotionId: 3,
-    content: ""
-  });
+  const [input, setInput] = useState(
+      initData
+          ? { ...initData, createdDate: new Date(Number(initData.createdDate)) }
+          : { createdDate: new Date(), emotionId: 3, content: "" }
+  );
 
   const onChangeInput = (e) => {
     let name = e.target.name;
@@ -62,6 +62,15 @@ const nav = useNavigate();
     })
 
   }
+
+ /* useEffect(()=>{
+    if (initData){
+      setInput({
+        ...initData,
+        createdDate: new Date(Number(initData.createdDate))
+      })
+    }
+  },[initData])*/
 
 
   return (
