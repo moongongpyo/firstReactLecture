@@ -2,7 +2,7 @@ import {useContext, useEffect, useMemo, useRef} from 'react';
 import {useNavigate} from "react-router-dom";
 import {DiaryStateContext} from "../App.jsx";
 
-const UseDiary = (id) => {
+const useDiary = (id) => {
   const data = useContext(DiaryStateContext)
 
   const nav = useNavigate();
@@ -24,4 +24,4 @@ const UseDiary = (id) => {
     return curDiaryItem;
 };
 
-export default UseDiary;
+export default useDiary;

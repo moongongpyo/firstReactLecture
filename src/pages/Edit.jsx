@@ -5,12 +5,14 @@ import Button from "../components/Button.jsx";
 import {DiaryDispatchContext, DiaryStateContext} from "../App.jsx";
 import Editor from "../components/Editor.jsx";
 import useDiary from "../hooks/useDiary.jsx";
+import usePageTitle from "../hooks/usePageTitle.jsx";
 
 const Edit = () => {
   const params = useParams();
   const nav = useNavigate();
   const {onDelete, onUpdate} = useContext(DiaryDispatchContext)
-  const data = useContext(DiaryStateContext)
+  usePageTitle(`${params.id}번 일기 수정`);
+
   //const [curDiaryItem,setCurDiaryItem] = useState();
 
   const onclickDelete = () => {

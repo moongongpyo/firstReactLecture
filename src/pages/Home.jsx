@@ -4,6 +4,7 @@ import Header from "../components/Header.jsx";
 import Button from "../components/Button.jsx";
 import DiaryList from "../components/DiaryList.jsx";
 import {DiaryStateContext} from "../App.jsx";
+import usePageTitle from "../hooks/usePageTitle.jsx";
 
 const getMonthlyData = (pivotDate, data) => {
   const beginTime = new Date(pivotDate.getFullYear(), pivotDate.getMonth(), 1,
@@ -18,6 +19,8 @@ const getMonthlyData = (pivotDate, data) => {
 }
 
 const Home = () => {
+  usePageTitle("감정 일기장");
+
   /* const [params,setParams] = useSearchParams();
    const value = params.get("value");
    console.log(value)
