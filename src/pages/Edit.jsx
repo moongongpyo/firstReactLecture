@@ -17,7 +17,6 @@ const Edit = () => {
     if (
         window.confirm("일를 정말 삭제할까요? 다시 복구되지 않아요!")
     ) {
-      isDeleting.current = true;
       onDelete(params.id);
       nav("/", {replace: true})
     }
